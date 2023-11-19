@@ -9,6 +9,18 @@ import {
 
 import car from "../assets/images/car.png";
 import menuOptions from "../assets/menuOptions";
+import MenuOptions from "../components/MenuOptions";
+
+const Control = () => {
+  return (
+    <View style={styles.control}>
+      <Entypo name="lock" size={36} color="gray" />
+      <MaterialCommunityIcons name="fan" size={26} color="gray" />
+      <FontAwesome5 name="bolt" size={26} color="gray" />
+      <Ionicons name="car-sport-sharp" size={26} color="gray" />
+    </View>
+  )
+}
 
 export default function Page() {
   return (
@@ -21,28 +33,12 @@ export default function Page() {
         <FontAwesome name="user-circle" size={30} color="grey" />
       </View>
       <Image source={car} style={styles.image} resizeMode="contain" />
-      <View style={styles.control}>
-        <Entypo name="lock" size={36} color="gray" />
-        <MaterialCommunityIcons name="fan" size={26} color="gray" />
-        <FontAwesome5 name="bolt" size={26} color="gray" />
-        <Ionicons name="car-sport-sharp" size={26} color="gray" />
-      </View>
-
+      <Control />
       <FlatList
         data={menuOptions}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.optionRow}>
-              {/* icon */}
-              <MaterialCommunityIcons name={item.iconName} size={26} color="gray" />
-              {/* Text */}
-              <Text style={styles.optionText}>{item.name}</Text>
-              {/* Icon */}
-              <MaterialCommunityIcons style={styles.optionIcon} name="chevron-right" size={26} color="gray" />
-            </View>
-          )
-        }} />
+        renderItem={MenuOptions}
+      />
     </View>
   );
 }
@@ -60,7 +56,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: "#eee", //"#0C0D34
+    color: "#eee",
     fontWeight: "bold",
     marginBottom: 8,
   },
@@ -75,18 +71,5 @@ const styles = StyleSheet.create({
   control: {
     flexDirection: "row",
     justifyContent: "space-around",
-  },
-  optionRow: {
-    flexDirection: "row",
-    marginVertical: 20,
-    alignItems: "center",
-  },
-  optionText: {
-    color: "#eee",
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-  optionIcon: {
-    marginLeft: "auto",
   }
 });
